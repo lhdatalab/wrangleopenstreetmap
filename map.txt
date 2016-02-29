@@ -1,0 +1,8 @@
+The initial metro chosen was Toronto, Ontario, Canada at mapzen.com. However the number of tags in this metro exceeded one million (nodes =848,780 and tags = 151,219) and was too much for my local computer to process.
+
+I chose to use a subset of the Toronto metro using bounding box.
+
+{'minlat': '43.6234' S, 'maxlon': '-79.2815' E, 'minlon': '-79.5681' W, 'maxlat': '43.7451' N}
+
+https://www.openstreetmap.org/relation/324211
+http://www.openstreetmap.org/export#map=12/43.6844/-79.4215
