@@ -101,24 +101,11 @@ def update_name(name, mapping):
 
 def test():
     (st_types, vd_names) = audit(INPUTFILE)
-   # mapping = update_mapping()
-    # assert len(st_types) == 3
     writefile(OUTFILE, vd_names)
     print "Invalid address endings"
     pprint.pprint(dict(st_types))
     print "Valid address ending"
     print vd_names
-
-    #for st_type, ways in st_types.iteritems():
-     #   for name in ways:
-          #  print name
-            # better_name = update_name(name, mapping)
-            # print name, "=>", better_name
-            # if name == "West Lexington St.":
-            #     assert better_name == "West Lexington Street"
-            # if name == "Baldwin Rd.":
-            #     assert better_name == "Baldwin Road"
-
 
 if __name__ == '__main__':
     test()

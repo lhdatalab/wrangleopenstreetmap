@@ -120,11 +120,9 @@ def update_name(name, mapping):
     length = len(word)
     for key in mapping.keys():
         if key == word[-1]:
-           # name = re.sub(word[-1], mapping[key], name)
              name = " ".join(word[:(length-1)]) + " " + mapping[key]
         try:
             if key == word[-2]:
-               # name = re.sub(word[-2], mapping[key], name)
                 name = " ".join(word[:(length-2)]) + " " + mapping[key] + " " + word[(length-1)]
         except:
             pass
@@ -151,7 +149,6 @@ def change_to_list(name):
         name = re.sub(r'\s[0-9]+\.?[0-9]?\s?k?m\s?', "", name)
         # Create list of addresses by splitting on ,;/ or &
         name = re.split(r'\s?[,;/&]\s?',name)
-       # name = re.split(r'[,;/&]|\s[0-9]+\skm\s?[,;/&]\s|\s[0-9]+\skm',name)
     else:
         name = [name]
     return name
@@ -178,18 +175,14 @@ def add_neighb(pcode):
 def process_address(tag):
     addr_key = []
     addr_val = []
-   # if lower_colon.search(tag.attrib["k"]):
     address = tag.attrib["k"].split(":")
     addr_key.append(address[-1])
 
     # Process street names
     if address[-1] == "street":
         street_name = audit_street_name(tag.attrib["v"])
-        # print street_name
         if re.search(r'[;/&]', street_name):
             street_name = street_name.split(";")
-       # if re.search(r'\/', street_name):
-        #    street_name = street_name.split("/")
         addr_val.append(street_name)
 
     # Process city field. E.g. "city of Toronto", remove "city of"
@@ -285,8 +278,6 @@ def shape_element(element):
                         try:
                             if tag.attrib["k"] == "name" and (node["type"] == "node" or node["type"] == "way") and \
                                     (node["highway"] or node["guidepost"]):
-                                #if re.search(r'[,;/&]', tag.attrib["v"]):
-                                #    print tag.attrib["v"]
                                 name_list = change_to_list(tag.attrib["v"])
                                 for index, name in enumerate(name_list):
                                     name_list[index] = update_name(name, mapping)
@@ -332,19 +323,9 @@ def process_map(file_in, pretty = False):
     return data
 
 def test():
-    # NOTE: if you are running this code on your computer, with a larger dataset,
-    # call the process_map procedure with pretty=False. The pretty=True option adds
-    # additional spaces to the output, making it significantly larger.
     data = process_map(INPUTFILE, True)
     pprint.pprint(data[0:10])
     pprint.pprint(data[1000:1010])
-
-    # assert len(data) == 76
-    # pprint.pprint(data[14])
-    # assert data[0] == first_entry
-    # assert data[17]["name"] == "Ogdenia"
-    # assert data[48]["label"] == "Hydrachnidiae"
-    # assert data[14]["synonym"] == ["Cyrene Peckham & Peckham"]
 
 if __name__ == '__main__':
     test()

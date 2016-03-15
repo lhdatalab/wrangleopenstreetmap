@@ -25,12 +25,8 @@ lower_colon = re.compile(r'^addr:([a-z]|_)*$')
 problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
 def write_nopcode(node, pretty = False):
-    #file_out = NOPOSTCODE
-   # file_out = "{0}_test.json".format(file_in)
     data = []
     with open("nopcode.json", "w") as fo:
-       # for _, element in ET.iterparse(file_in):
-        #   el = shape_element(element)
         if node:
             data.append(node)
             if pretty:
@@ -79,19 +75,8 @@ def process_file(file_in, pretty = False):
     return data
 
 def test():
-    # NOTE: if you are running this code on your computer, with a larger dataset,
-    # call the process_map procedure with pretty=False. The pretty=True option adds
-    # additional spaces to the output, making it significantly larger.
     data = process_file(POSTCODEFILE, True)
     pprint.pprint(data)
-
-
-    # assert len(data) == 76
-    # pprint.pprint(data[14])
-    # assert data[0] == first_entry
-    # assert data[17]["name"] == "Ogdenia"
-    # assert data[48]["label"] == "Hydrachnidiae"
-    # assert data[14]["synonym"] == ["Cyrene Peckham & Peckham"]
 
 if __name__ == '__main__':
     test()

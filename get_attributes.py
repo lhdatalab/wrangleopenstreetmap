@@ -14,16 +14,6 @@ tags = ["bounds", "member", "meta", "nd", "node", "note", "osm", "relation", "ta
 
 # Get attributes of all tags
 # This will give some indication of the the best way to structure the JSON documents
-# def sample_file(filename):
-#     data ={}
-#     count = 0
-#     for event, elem in ET.iterparse(filename):
-#         if elem.tag == "tag" and elem.attrib["k"].startswith("addr"):
-#             if count < 200:
-#                 print elem.tag, elem.attrib
-#                 count += 1
-#     return data
-
 def get_attrs(filename):
     data ={}
     for tag in tags:
@@ -34,8 +24,6 @@ def get_attrs(filename):
 
 
 def test():
-   # filename = csv.DictReader(open(INPUTFILE, "r"))
-   # data = check_tags(INPUTFILE)
     data = get_attrs(INPUTFILE)
     pprint.pprint(data)
 

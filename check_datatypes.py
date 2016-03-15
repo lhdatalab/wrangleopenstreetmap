@@ -4,7 +4,7 @@
     - If it falls outside of  the bounding box
         o get the tag subelement and associated k, v attributes
         o write all data to a list of dictionaries and save to a csv file
-        o Examine th file and determine if to keep these nodes or if to discard them
+        o Examine the file and determine if to keep these nodes or if to discard them
 
     tags = ["bounds", "member", "meta", "nd", "node", "note", "osm", "relation", "tag", "way"]
 
@@ -91,8 +91,6 @@ def get_fieldtype(filename):
                 lat_diff = getcoord_diff(float(coord["lat"]), 43.6234, 43.7451)
                 lon_diff = getcoord_diff(float(coord["lon"]), -79.5681, -79.2815)
                 error = "Coordinates out of range"
-                #print error + ":", coord["lat"], coord["lon"] + " Tag type: ", elem.tag + \
-                  #  " Proximity of node: [{}, {}]".format(lat_diff, lon_diff)
                 data_coord.append(coord["lat"] + " " + coord["lon"])
                 count_range += 1
 
@@ -107,8 +105,6 @@ def get_fieldtype(filename):
 
     writefile(OUTFILE, data_error)
     return data_coord
-
-#Coordinates are out of range. Save to list of dicitonaries and skip when turning into json
 
 def test():
     data = get_fieldtype(INPUTFILE)

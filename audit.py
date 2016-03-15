@@ -8,26 +8,9 @@ import re
 import codecs
 import json
 import csv
-#import sys, string, os
-#import sys, subprocess
 
 INPUTFILE = "map_toronto1"
 
-# result = os.system(sys.argv[1], sys.argv[2])
-# result = subprocess.check_output(sys.argv[1], sys.argv[2])
-
-# Audit tags in toronto.osm file
-# def check_tags(filename):
-#     data = {}
-#     numtags = 0
-#     for event, elem in ET.iterparse(filename):
-#             if elem.tag in data.keys():
-#                 data[elem.tag] = data[elem.tag] + 1
-#             else:
-#                 data[elem.tag] = 1
-#             numtags = numtags + 1
-#     data["total"] = numtags
-#     return data
 
 # Get relationship between child tags and parent tags
 def get_childtags(filename):
@@ -51,8 +34,6 @@ def get_childtags(filename):
 
 # Print results of tag Audit
 def test():
-   # filename = csv.DictReader(open(INPUTFILE, "r"))
-   # data = check_tags(INPUTFILE)
     child_data = get_childtags(INPUTFILE)
     pprint.pprint(child_data)
 

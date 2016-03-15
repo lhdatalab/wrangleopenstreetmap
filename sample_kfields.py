@@ -18,13 +18,11 @@ OUTFILE = "C:\Mathlab\CV\Courses\DAND\P3 - Data Wrangling with MongoDB\P3 Projec
 #tags = ["bounds", "member", "meta", "nd", "node", "note", "osm", "relation", "tag", "way"]
 
 lower = re.compile(r'^([a-z]|_)*$')
-# lower_colon = re.compile(r'^addr:([a-z]|_)*$')
 lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
 problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
 # Write k attributes to a csv file
 def writefile(filename, data):
-    #keys = data[0].keys()
     data = sorted(list(data))
     with open(filename, "w") as fo:
         writer = csv.writer(fo, delimiter=",", quotechar="'", lineterminator="\n")
@@ -36,20 +34,10 @@ def writefile(filename, data):
 
 # Lots of k,v pairs. Get a list of all k values in the OSM file to determine how to process them
 def get_knames(elem, k_attrib):
-    #k_attrib = set()
-    #for event, elem in ET.iterparse(filename):
-     #   if elem.tag == "tag":
     k_attrib |= set([elem.attrib.get("k")])
-
-    #writefile(OUTFILE, k_attrib)
-    #print "TEST2"
     return k_attrib
 
 def key_type(element, keys, probchar_fields):
-
-   # if element.tag == "tag":
-        # YOUR CODE HERE
-     #   knames = set()
     attr = element.attrib['k']
     if lower.search(attr):
         keys["lower"] = keys["lower"] + 1
@@ -70,15 +58,12 @@ def process_map(filename):
         if element.tag == "tag":
             keys = key_type(element, keys, probchars_fields)
             knames = get_knames(element, knames)
-
-   # writefile(OUTFILE, knames)
     print probchars_fields
     return keys
 
 
 
 def test():
-    #get_codes(INPUTFILE)
     data = process_map(INPUTFILE)
     pprint.pprint(data)
 

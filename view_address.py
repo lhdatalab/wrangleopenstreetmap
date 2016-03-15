@@ -15,7 +15,6 @@ import csv
 INPUTFILE = "C:\Mathlab\CV\Courses\DAND\P3 - Data Wrangling with MongoDB\P3 Project\OSM Data\\toronto_canada.osm\map_toronto1"
 
 # Use to check the ending of the streetname
-#street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 
 # Intial list of streetname endings
@@ -54,8 +53,6 @@ def audit(osmfile):
     return street_types
 
 def update_name(name, mapping):
-
-    # YOUR CODE HERE
     get_end = name.split(" ")
     for key in mapping.keys():
         if key == get_end[-1]:
